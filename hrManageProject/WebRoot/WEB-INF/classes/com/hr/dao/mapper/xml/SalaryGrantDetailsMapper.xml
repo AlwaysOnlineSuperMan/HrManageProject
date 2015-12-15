@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.SalaryGrantDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.SalaryGrantDetails" >
+    <id column="grd_id" property="grdId" jdbcType="SMALLINT" />
+    <result column="salary_grant_id" property="salaryGrantId" jdbcType="VARCHAR" />
+    <result column="human_id" property="humanId" jdbcType="VARCHAR" />
+    <result column="human_name" property="humanName" jdbcType="VARCHAR" />
+    <result column="bouns_sum" property="bounsSum" jdbcType="REAL" />
+    <result column="sale_sum" property="saleSum" jdbcType="REAL" />
+    <result column="deduct_sum" property="deductSum" jdbcType="REAL" />
+    <result column="salary_standard_sum" property="salaryStandardSum" jdbcType="REAL" />
+    <result column="salary_paid_sum" property="salaryPaidSum" jdbcType="REAL" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    grd_id, salary_grant_id, human_id, human_name, bouns_sum, sale_sum, deduct_sum, salary_standard_sum, 
+    salary_paid_sum, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from salary_grant_details
+    where grd_id = #{grdId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from salary_grant_details
+    where grd_id = #{grdId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.SalaryGrantDetails" >
+    insert into salary_grant_details (grd_id, salary_grant_id, human_id, 
+      human_name, bouns_sum, sale_sum, 
+      deduct_sum, salary_standard_sum, salary_paid_sum, 
+      update_dateTime)
+    values (#{grdId,jdbcType=SMALLINT}, #{salaryGrantId,jdbcType=VARCHAR}, #{humanId,jdbcType=VARCHAR}, 
+      #{humanName,jdbcType=VARCHAR}, #{bounsSum,jdbcType=REAL}, #{saleSum,jdbcType=REAL}, 
+      #{deductSum,jdbcType=REAL}, #{salaryStandardSum,jdbcType=REAL}, #{salaryPaidSum,jdbcType=REAL}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.SalaryGrantDetails" >
+    insert into salary_grant_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="grdId != null" >
+        grd_id,
+      </if>
+      <if test="salaryGrantId != null" >
+        salary_grant_id,
+      </if>
+      <if test="humanId != null" >
+        human_id,
+      </if>
+      <if test="humanName != null" >
+        human_name,
+      </if>
+      <if test="bounsSum != null" >
+        bouns_sum,
+      </if>
+      <if test="saleSum != null" >
+        sale_sum,
+      </if>
+      <if test="deductSum != null" >
+        deduct_sum,
+      </if>
+      <if test="salaryStandardSum != null" >
+        salary_standard_sum,
+      </if>
+      <if test="salaryPaidSum != null" >
+        salary_paid_sum,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="grdId != null" >
+        #{grdId,jdbcType=SMALLINT},
+      </if>
+      <if test="salaryGrantId != null" >
+        #{salaryGrantId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanId != null" >
+        #{humanId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanName != null" >
+        #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="bounsSum != null" >
+        #{bounsSum,jdbcType=REAL},
+      </if>
+      <if test="saleSum != null" >
+        #{saleSum,jdbcType=REAL},
+      </if>
+      <if test="deductSum != null" >
+        #{deductSum,jdbcType=REAL},
+      </if>
+      <if test="salaryStandardSum != null" >
+        #{salaryStandardSum,jdbcType=REAL},
+      </if>
+      <if test="salaryPaidSum != null" >
+        #{salaryPaidSum,jdbcType=REAL},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.SalaryGrantDetails" >
+    update salary_grant_details
+    <set >
+      <if test="salaryGrantId != null" >
+        salary_grant_id = #{salaryGrantId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanId != null" >
+        human_id = #{humanId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanName != null" >
+        human_name = #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="bounsSum != null" >
+        bouns_sum = #{bounsSum,jdbcType=REAL},
+      </if>
+      <if test="saleSum != null" >
+        sale_sum = #{saleSum,jdbcType=REAL},
+      </if>
+      <if test="deductSum != null" >
+        deduct_sum = #{deductSum,jdbcType=REAL},
+      </if>
+      <if test="salaryStandardSum != null" >
+        salary_standard_sum = #{salaryStandardSum,jdbcType=REAL},
+      </if>
+      <if test="salaryPaidSum != null" >
+        salary_paid_sum = #{salaryPaidSum,jdbcType=REAL},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where grd_id = #{grdId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.SalaryGrantDetails" >
+    update salary_grant_details
+    set salary_grant_id = #{salaryGrantId,jdbcType=VARCHAR},
+      human_id = #{humanId,jdbcType=VARCHAR},
+      human_name = #{humanName,jdbcType=VARCHAR},
+      bouns_sum = #{bounsSum,jdbcType=REAL},
+      sale_sum = #{saleSum,jdbcType=REAL},
+      deduct_sum = #{deductSum,jdbcType=REAL},
+      salary_standard_sum = #{salaryStandardSum,jdbcType=REAL},
+      salary_paid_sum = #{salaryPaidSum,jdbcType=REAL},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where grd_id = #{grdId,jdbcType=SMALLINT}
+  </update>
+</mapper>

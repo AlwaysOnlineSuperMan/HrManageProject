@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.Role" >
+    <id column="role_id" property="roleId" jdbcType="SMALLINT" />
+    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+    <result column="role_flag" property="roleFlag" jdbcType="INTEGER" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    role_id, role_name, role_desc, role_flag, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from role
+    where role_id = #{roleId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from role
+    where role_id = #{roleId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.Role" >
+    insert into role (role_id, role_name, role_desc, 
+      role_flag, update_dateTime)
+    values (#{roleId,jdbcType=SMALLINT}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}, 
+      #{roleFlag,jdbcType=INTEGER}, #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="roleName != null" >
+        role_name,
+      </if>
+      <if test="roleDesc != null" >
+        role_desc,
+      </if>
+      <if test="roleFlag != null" >
+        role_flag,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roleId != null" >
+        #{roleId,jdbcType=SMALLINT},
+      </if>
+      <if test="roleName != null" >
+        #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleFlag != null" >
+        #{roleFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.Role" >
+    update role
+    <set >
+      <if test="roleName != null" >
+        role_name = #{roleName,jdbcType=VARCHAR},
+      </if>
+      <if test="roleDesc != null" >
+        role_desc = #{roleDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="roleFlag != null" >
+        role_flag = #{roleFlag,jdbcType=INTEGER},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where role_id = #{roleId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.Role" >
+    update role
+    set role_name = #{roleName,jdbcType=VARCHAR},
+      role_desc = #{roleDesc,jdbcType=VARCHAR},
+      role_flag = #{roleFlag,jdbcType=INTEGER},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where role_id = #{roleId,jdbcType=SMALLINT}
+  </update>
+  
+		<select id="selectRoleAllList" resultMap="BaseResultMap">
+				select * from role r left join users u on r.role_id = u.u_id
+		</select>
+	
+  
+</mapper>

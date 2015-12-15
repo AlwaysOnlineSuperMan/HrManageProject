@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="UsersService" class="com.hr.biz.UsersService">
+		<property name="usersDAO" ref="UsersDAO"/>
+	</bean>
+	<bean id="RoleService" class="com.hr.biz.RoleService">
+		<property name="roleDao" ref="RoleDao"/>
+	</bean>
+	
+	<bean id="SalaryStandardService" class="com.hr.biz.SalaryStandardService">
+		<property name="salaryStandardDao" ref="SalaryStandardDao"/>
+		<property name="detailsMapperDao" ref="SalaryStandardDetailsDao"/>
+	</bean>
+	<bean id="ConfigFileFirstKindService" class="com.hr.biz.ConfigFileFirstKindService">
+		<property name="configFileFirstKindDao" ref="ConfigFileFirstKindDAO"/>
+	</bean>
+	<bean id="ConfigFileSecondKindService" class="com.hr.biz.ConfigFileSecondKindService">
+		<property name="configFileSecondKindDao" ref="ConfigFileSecondKindDAO"/>
+	</bean>  
+	<bean id="ConfigFileThirdKindService" class="com.hr.biz.ConfigFileThirdKindService">
+		<property name="configFileThirdKindDao" ref="ConfigFileThirdKindDAO"/>
+	</bean>
+		
+	<bean id="ConfigMajorKindService" class="com.hr.biz.ConfigMajorKindService">
+		<property name="configMajorKindDao" ref="ConfigMajorKindDAO"/>
+	</bean>
+	<bean id="ConfigMajorService" class="com.hr.biz.ConfigMajorService">
+		<property name="configMajorDao" ref="ConfigMajorDAO"/>
+	</bean>
+	
+	<bean id="ConfigMajorDesignationService" class="com.hr.biz.ConfigMajorDesignationService">
+		<property name="configMajorDesignationDAO" ref="ConfigMajorDesignationDAO"/>
+	</bean>
+	
+	<bean id="ConfigPublicCharService" class="com.hr.biz.ConfigPublicCharService">
+		<property name="configPublicCharDAO" ref="ConfigPublicCharDAO"/>
+	</bean>
+	
+	<bean id="MajorChangeService" class="com.hr.biz.MajorChangeService">
+		<property name="majorChangeDAO" ref="MajorChangeDAO"></property>
+	</bean>
+		<bean id="HumanFileService" class="com.hr.biz.HumanFileService">
+		<property name="humanFileDao" ref="HumanFileDAO"></property>
+		<property name="humanFileDigDao" ref="HumanFileDigDAO"></property>
+	</bean>
+	<bean id="EngageMajorReleaseService" class="com.hr.biz.EngageMajorReleaseService">
+		<property name="engageMajorReleasedao" ref="EngageMajorReleaseDao"></property>
+	</bean>
+	
+	<bean id="SalaryStandardDetailsService" class="com.hr.biz.SalaryStandardDetailsService">
+		<property name="salaryStandardDetailsMapper" ref="SalaryStandarddetailsDao"></property>
+	</bean>
+	
+</beans>

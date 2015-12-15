@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.ConfigPrimaryKeyMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.ConfigPrimaryKey" >
+    <id column="prk_id" property="prkId" jdbcType="SMALLINT" />
+    <result column="primary_key_table" property="primaryKeyTable" jdbcType="VARCHAR" />
+    <result column="primary_key" property="primaryKey" jdbcType="VARCHAR" />
+    <result column="key_name" property="keyName" jdbcType="VARCHAR" />
+    <result column="primary_key_status" property="primaryKeyStatus" jdbcType="BIT" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    prk_id, primary_key_table, primary_key, key_name, primary_key_status, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_primary_key
+    where prk_id = #{prkId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from config_primary_key
+    where prk_id = #{prkId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.ConfigPrimaryKey" >
+    insert into config_primary_key (prk_id, primary_key_table, primary_key, 
+      key_name, primary_key_status, update_dateTime
+      )
+    values (#{prkId,jdbcType=SMALLINT}, #{primaryKeyTable,jdbcType=VARCHAR}, #{primaryKey,jdbcType=VARCHAR}, 
+      #{keyName,jdbcType=VARCHAR}, #{primaryKeyStatus,jdbcType=BIT}, #{updateDatetime,jdbcType=DATE}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.ConfigPrimaryKey" >
+    insert into config_primary_key
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="prkId != null" >
+        prk_id,
+      </if>
+      <if test="primaryKeyTable != null" >
+        primary_key_table,
+      </if>
+      <if test="primaryKey != null" >
+        primary_key,
+      </if>
+      <if test="keyName != null" >
+        key_name,
+      </if>
+      <if test="primaryKeyStatus != null" >
+        primary_key_status,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="prkId != null" >
+        #{prkId,jdbcType=SMALLINT},
+      </if>
+      <if test="primaryKeyTable != null" >
+        #{primaryKeyTable,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName != null" >
+        #{keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKeyStatus != null" >
+        #{primaryKeyStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.ConfigPrimaryKey" >
+    update config_primary_key
+    <set >
+      <if test="primaryKeyTable != null" >
+        primary_key_table = #{primaryKeyTable,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        primary_key = #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName != null" >
+        key_name = #{keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKeyStatus != null" >
+        primary_key_status = #{primaryKeyStatus,jdbcType=BIT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where prk_id = #{prkId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.ConfigPrimaryKey" >
+    update config_primary_key
+    set primary_key_table = #{primaryKeyTable,jdbcType=VARCHAR},
+      primary_key = #{primaryKey,jdbcType=VARCHAR},
+      key_name = #{keyName,jdbcType=VARCHAR},
+      primary_key_status = #{primaryKeyStatus,jdbcType=BIT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where prk_id = #{prkId,jdbcType=SMALLINT}
+  </update>
+</mapper>

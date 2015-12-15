@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.EngageResumeMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.EngageResume" >
+    <id column="res_id" property="resId" jdbcType="SMALLINT" />
+    <result column="human_name" property="humanName" jdbcType="VARCHAR" />
+    <result column="engage_type" property="engageType" jdbcType="VARCHAR" />
+    <result column="human_address" property="humanAddress" jdbcType="VARCHAR" />
+    <result column="human_postcode" property="humanPostcode" jdbcType="VARCHAR" />
+    <result column="human_major_id" property="humanMajorId" jdbcType="CHAR" />
+    <result column="hunma_major_name" property="hunmaMajorName" jdbcType="VARCHAR" />
+    <result column="human_major_kind_id" property="humanMajorKindId" jdbcType="CHAR" />
+    <result column="human_major_kind_name" property="humanMajorKindName" jdbcType="VARCHAR" />
+    <result column="human_telephone" property="humanTelephone" jdbcType="VARCHAR" />
+    <result column="human_homephone" property="humanHomephone" jdbcType="VARCHAR" />
+    <result column="human_mobilephone" property="humanMobilephone" jdbcType="VARCHAR" />
+    <result column="human_email" property="humanEmail" jdbcType="VARCHAR" />
+    <result column="human_hobby" property="humanHobby" jdbcType="VARCHAR" />
+    <result column="human_specility" property="humanSpecility" jdbcType="VARCHAR" />
+    <result column="human_sex" property="humanSex" jdbcType="CHAR" />
+    <result column="human_religion" property="humanReligion" jdbcType="VARCHAR" />
+    <result column="human_party" property="humanParty" jdbcType="VARCHAR" />
+    <result column="human_nationality" property="humanNationality" jdbcType="VARCHAR" />
+    <result column="human_race" property="humanRace" jdbcType="VARCHAR" />
+    <result column="human_birthday" property="humanBirthday" jdbcType="TIMESTAMP" />
+    <result column="human_age" property="humanAge" jdbcType="SMALLINT" />
+    <result column="human_educated_degree" property="humanEducatedDegree" jdbcType="VARCHAR" />
+    <result column="human_educated_years" property="humanEducatedYears" jdbcType="SMALLINT" />
+    <result column="human_educated_major" property="humanEducatedMajor" jdbcType="VARCHAR" />
+    <result column="human_college" property="humanCollege" jdbcType="VARCHAR" />
+    <result column="human_idcard" property="humanIdcard" jdbcType="VARCHAR" />
+    <result column="human_birthplace" property="humanBirthplace" jdbcType="VARCHAR" />
+    <result column="demand_salary_standard" property="demandSalaryStandard" jdbcType="DECIMAL" />
+    <result column="human_picture" property="humanPicture" jdbcType="VARCHAR" />
+    <result column="attachment_name" property="attachmentName" jdbcType="VARCHAR" />
+    <result column="check_status" property="checkStatus" jdbcType="SMALLINT" />
+    <result column="register" property="register" jdbcType="VARCHAR" />
+    <result column="regist_time" property="registTime" jdbcType="TIMESTAMP" />
+    <result column="checker" property="checker" jdbcType="VARCHAR" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="interview_status" property="interviewStatus" jdbcType="SMALLINT" />
+    <result column="total_points" property="totalPoints" jdbcType="REAL" />
+    <result column="test_amount" property="testAmount" jdbcType="SMALLINT" />
+    <result column="test_checker" property="testChecker" jdbcType="VARCHAR" />
+    <result column="test_check_time" property="testCheckTime" jdbcType="TIMESTAMP" />
+    <result column="pass_register" property="passRegister" jdbcType="VARCHAR" />
+    <result column="pass_regist_time" property="passRegistTime" jdbcType="TIMESTAMP" />
+    <result column="pass_checker" property="passChecker" jdbcType="VARCHAR" />
+    <result column="pass_check_time" property="passCheckTime" jdbcType="TIMESTAMP" />
+    <result column="pass_check_status" property="passCheckStatus" jdbcType="SMALLINT" />
+    <result column="pass_checkComment" property="passCheckcomment" jdbcType="VARCHAR" />
+    <result column="pass_passComment" property="passPasscomment" jdbcType="VARCHAR" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hr.entity.EngageResumeWithBLOBs" extends="BaseResultMap" >
+    <result column="human_history_records" property="humanHistoryRecords" jdbcType="LONGVARCHAR" />
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+    <result column="recomandation" property="recomandation" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    res_id, human_name, engage_type, human_address, human_postcode, human_major_id, hunma_major_name, 
+    human_major_kind_id, human_major_kind_name, human_telephone, human_homephone, human_mobilephone, 
+    human_email, human_hobby, human_specility, human_sex, human_religion, human_party, 
+    human_nationality, human_race, human_birthday, human_age, human_educated_degree, 
+    human_educated_years, human_educated_major, human_college, human_idcard, human_birthplace, 
+    demand_salary_standard, human_picture, attachment_name, check_status, register, regist_time, 
+    checker, check_time, interview_status, total_points, test_amount, test_checker, test_check_time, 
+    pass_register, pass_regist_time, pass_checker, pass_check_time, pass_check_status, 
+    pass_checkComment, pass_passComment, update_dateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    human_history_records, remark, recomandation
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from engage_resume
+    where res_id = #{resId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from engage_resume
+    where res_id = #{resId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.EngageResumeWithBLOBs" >
+    insert into engage_resume (res_id, human_name, engage_type, 
+      human_address, human_postcode, human_major_id, 
+      hunma_major_name, human_major_kind_id, human_major_kind_name, 
+      human_telephone, human_homephone, human_mobilephone, 
+      human_email, human_hobby, human_specility, 
+      human_sex, human_religion, human_party, 
+      human_nationality, human_race, human_birthday, 
+      human_age, human_educated_degree, human_educated_years, 
+      human_educated_major, human_college, human_idcard, 
+      human_birthplace, demand_salary_standard, 
+      human_picture, attachment_name, check_status, 
+      register, regist_time, checker, 
+      check_time, interview_status, total_points, 
+      test_amount, test_checker, test_check_time, 
+      pass_register, pass_regist_time, pass_checker, 
+      pass_check_time, pass_check_status, pass_checkComment, 
+      pass_passComment, update_dateTime, human_history_records, 
+      remark, recomandation)
+    values (#{resId,jdbcType=SMALLINT}, #{humanName,jdbcType=VARCHAR}, #{engageType,jdbcType=VARCHAR}, 
+      #{humanAddress,jdbcType=VARCHAR}, #{humanPostcode,jdbcType=VARCHAR}, #{humanMajorId,jdbcType=CHAR}, 
+      #{hunmaMajorName,jdbcType=VARCHAR}, #{humanMajorKindId,jdbcType=CHAR}, #{humanMajorKindName,jdbcType=VARCHAR}, 
+      #{humanTelephone,jdbcType=VARCHAR}, #{humanHomephone,jdbcType=VARCHAR}, #{humanMobilephone,jdbcType=VARCHAR}, 
+      #{humanEmail,jdbcType=VARCHAR}, #{humanHobby,jdbcType=VARCHAR}, #{humanSpecility,jdbcType=VARCHAR}, 
+      #{humanSex,jdbcType=CHAR}, #{humanReligion,jdbcType=VARCHAR}, #{humanParty,jdbcType=VARCHAR}, 
+      #{humanNationality,jdbcType=VARCHAR}, #{humanRace,jdbcType=VARCHAR}, #{humanBirthday,jdbcType=TIMESTAMP}, 
+      #{humanAge,jdbcType=SMALLINT}, #{humanEducatedDegree,jdbcType=VARCHAR}, #{humanEducatedYears,jdbcType=SMALLINT}, 
+      #{humanEducatedMajor,jdbcType=VARCHAR}, #{humanCollege,jdbcType=VARCHAR}, #{humanIdcard,jdbcType=VARCHAR}, 
+      #{humanBirthplace,jdbcType=VARCHAR}, #{demandSalaryStandard,jdbcType=DECIMAL}, 
+      #{humanPicture,jdbcType=VARCHAR}, #{attachmentName,jdbcType=VARCHAR}, #{checkStatus,jdbcType=SMALLINT}, 
+      #{register,jdbcType=VARCHAR}, #{registTime,jdbcType=TIMESTAMP}, #{checker,jdbcType=VARCHAR}, 
+      #{checkTime,jdbcType=TIMESTAMP}, #{interviewStatus,jdbcType=SMALLINT}, #{totalPoints,jdbcType=REAL}, 
+      #{testAmount,jdbcType=SMALLINT}, #{testChecker,jdbcType=VARCHAR}, #{testCheckTime,jdbcType=TIMESTAMP}, 
+      #{passRegister,jdbcType=VARCHAR}, #{passRegistTime,jdbcType=TIMESTAMP}, #{passChecker,jdbcType=VARCHAR}, 
+      #{passCheckTime,jdbcType=TIMESTAMP}, #{passCheckStatus,jdbcType=SMALLINT}, #{passCheckcomment,jdbcType=VARCHAR}, 
+      #{passPasscomment,jdbcType=VARCHAR}, #{updateDatetime,jdbcType=DATE}, #{humanHistoryRecords,jdbcType=LONGVARCHAR}, 
+      #{remark,jdbcType=LONGVARCHAR}, #{recomandation,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.EngageResumeWithBLOBs" >
+    insert into engage_resume
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        res_id,
+      </if>
+      <if test="humanName != null" >
+        human_name,
+      </if>
+      <if test="engageType != null" >
+        engage_type,
+      </if>
+      <if test="humanAddress != null" >
+        human_address,
+      </if>
+      <if test="humanPostcode != null" >
+        human_postcode,
+      </if>
+      <if test="humanMajorId != null" >
+        human_major_id,
+      </if>
+      <if test="hunmaMajorName != null" >
+        hunma_major_name,
+      </if>
+      <if test="humanMajorKindId != null" >
+        human_major_kind_id,
+      </if>
+      <if test="humanMajorKindName != null" >
+        human_major_kind_name,
+      </if>
+      <if test="humanTelephone != null" >
+        human_telephone,
+      </if>
+      <if test="humanHomephone != null" >
+        human_homephone,
+      </if>
+      <if test="humanMobilephone != null" >
+        human_mobilephone,
+      </if>
+      <if test="humanEmail != null" >
+        human_email,
+      </if>
+      <if test="humanHobby != null" >
+        human_hobby,
+      </if>
+      <if test="humanSpecility != null" >
+        human_specility,
+      </if>
+      <if test="humanSex != null" >
+        human_sex,
+      </if>
+      <if test="humanReligion != null" >
+        human_religion,
+      </if>
+      <if test="humanParty != null" >
+        human_party,
+      </if>
+      <if test="humanNationality != null" >
+        human_nationality,
+      </if>
+      <if test="humanRace != null" >
+        human_race,
+      </if>
+      <if test="humanBirthday != null" >
+        human_birthday,
+      </if>
+      <if test="humanAge != null" >
+        human_age,
+      </if>
+      <if test="humanEducatedDegree != null" >
+        human_educated_degree,
+      </if>
+      <if test="humanEducatedYears != null" >
+        human_educated_years,
+      </if>
+      <if test="humanEducatedMajor != null" >
+        human_educated_major,
+      </if>
+      <if test="humanCollege != null" >
+        human_college,
+      </if>
+      <if test="humanIdcard != null" >
+        human_idcard,
+      </if>
+      <if test="humanBirthplace != null" >
+        human_birthplace,
+      </if>
+      <if test="demandSalaryStandard != null" >
+        demand_salary_standard,
+      </if>
+      <if test="humanPicture != null" >
+        human_picture,
+      </if>
+      <if test="attachmentName != null" >
+        attachment_name,
+      </if>
+      <if test="checkStatus != null" >
+        check_status,
+      </if>
+      <if test="register != null" >
+        register,
+      </if>
+      <if test="registTime != null" >
+        regist_time,
+      </if>
+      <if test="checker != null" >
+        checker,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="interviewStatus != null" >
+        interview_status,
+      </if>
+      <if test="totalPoints != null" >
+        total_points,
+      </if>
+      <if test="testAmount != null" >
+        test_amount,
+      </if>
+      <if test="testChecker != null" >
+        test_checker,
+      </if>
+      <if test="testCheckTime != null" >
+        test_check_time,
+      </if>
+      <if test="passRegister != null" >
+        pass_register,
+      </if>
+      <if test="passRegistTime != null" >
+        pass_regist_time,
+      </if>
+      <if test="passChecker != null" >
+        pass_checker,
+      </if>
+      <if test="passCheckTime != null" >
+        pass_check_time,
+      </if>
+      <if test="passCheckStatus != null" >
+        pass_check_status,
+      </if>
+      <if test="passCheckcomment != null" >
+        pass_checkComment,
+      </if>
+      <if test="passPasscomment != null" >
+        pass_passComment,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+      <if test="humanHistoryRecords != null" >
+        human_history_records,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="recomandation != null" >
+        recomandation,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="resId != null" >
+        #{resId,jdbcType=SMALLINT},
+      </if>
+      <if test="humanName != null" >
+        #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="engageType != null" >
+        #{engageType,jdbcType=VARCHAR},
+      </if>
+      <if test="humanAddress != null" >
+        #{humanAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="humanPostcode != null" >
+        #{humanPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMajorId != null" >
+        #{humanMajorId,jdbcType=CHAR},
+      </if>
+      <if test="hunmaMajorName != null" >
+        #{hunmaMajorName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMajorKindId != null" >
+        #{humanMajorKindId,jdbcType=CHAR},
+      </if>
+      <if test="humanMajorKindName != null" >
+        #{humanMajorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanTelephone != null" >
+        #{humanTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanHomephone != null" >
+        #{humanHomephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMobilephone != null" >
+        #{humanMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanEmail != null" >
+        #{humanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="humanHobby != null" >
+        #{humanHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="humanSpecility != null" >
+        #{humanSpecility,jdbcType=VARCHAR},
+      </if>
+      <if test="humanSex != null" >
+        #{humanSex,jdbcType=CHAR},
+      </if>
+      <if test="humanReligion != null" >
+        #{humanReligion,jdbcType=VARCHAR},
+      </if>
+      <if test="humanParty != null" >
+        #{humanParty,jdbcType=VARCHAR},
+      </if>
+      <if test="humanNationality != null" >
+        #{humanNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="humanRace != null" >
+        #{humanRace,jdbcType=VARCHAR},
+      </if>
+      <if test="humanBirthday != null" >
+        #{humanBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="humanAge != null" >
+        #{humanAge,jdbcType=SMALLINT},
+      </if>
+      <if test="humanEducatedDegree != null" >
+        #{humanEducatedDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="humanEducatedYears != null" >
+        #{humanEducatedYears,jdbcType=SMALLINT},
+      </if>
+      <if test="humanEducatedMajor != null" >
+        #{humanEducatedMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="humanCollege != null" >
+        #{humanCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="humanIdcard != null" >
+        #{humanIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="humanBirthplace != null" >
+        #{humanBirthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="demandSalaryStandard != null" >
+        #{demandSalaryStandard,jdbcType=DECIMAL},
+      </if>
+      <if test="humanPicture != null" >
+        #{humanPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentName != null" >
+        #{attachmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="register != null" >
+        #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checker != null" >
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interviewStatus != null" >
+        #{interviewStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPoints != null" >
+        #{totalPoints,jdbcType=REAL},
+      </if>
+      <if test="testAmount != null" >
+        #{testAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="testChecker != null" >
+        #{testChecker,jdbcType=VARCHAR},
+      </if>
+      <if test="testCheckTime != null" >
+        #{testCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passRegister != null" >
+        #{passRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="passRegistTime != null" >
+        #{passRegistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passChecker != null" >
+        #{passChecker,jdbcType=VARCHAR},
+      </if>
+      <if test="passCheckTime != null" >
+        #{passCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passCheckStatus != null" >
+        #{passCheckStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="passCheckcomment != null" >
+        #{passCheckcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="passPasscomment != null" >
+        #{passPasscomment,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+      <if test="humanHistoryRecords != null" >
+        #{humanHistoryRecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recomandation != null" >
+        #{recomandation,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.EngageResumeWithBLOBs" >
+    update engage_resume
+    <set >
+      <if test="humanName != null" >
+        human_name = #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="engageType != null" >
+        engage_type = #{engageType,jdbcType=VARCHAR},
+      </if>
+      <if test="humanAddress != null" >
+        human_address = #{humanAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="humanPostcode != null" >
+        human_postcode = #{humanPostcode,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMajorId != null" >
+        human_major_id = #{humanMajorId,jdbcType=CHAR},
+      </if>
+      <if test="hunmaMajorName != null" >
+        hunma_major_name = #{hunmaMajorName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMajorKindId != null" >
+        human_major_kind_id = #{humanMajorKindId,jdbcType=CHAR},
+      </if>
+      <if test="humanMajorKindName != null" >
+        human_major_kind_name = #{humanMajorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanTelephone != null" >
+        human_telephone = #{humanTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanHomephone != null" >
+        human_homephone = #{humanHomephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanMobilephone != null" >
+        human_mobilephone = #{humanMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="humanEmail != null" >
+        human_email = #{humanEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="humanHobby != null" >
+        human_hobby = #{humanHobby,jdbcType=VARCHAR},
+      </if>
+      <if test="humanSpecility != null" >
+        human_specility = #{humanSpecility,jdbcType=VARCHAR},
+      </if>
+      <if test="humanSex != null" >
+        human_sex = #{humanSex,jdbcType=CHAR},
+      </if>
+      <if test="humanReligion != null" >
+        human_religion = #{humanReligion,jdbcType=VARCHAR},
+      </if>
+      <if test="humanParty != null" >
+        human_party = #{humanParty,jdbcType=VARCHAR},
+      </if>
+      <if test="humanNationality != null" >
+        human_nationality = #{humanNationality,jdbcType=VARCHAR},
+      </if>
+      <if test="humanRace != null" >
+        human_race = #{humanRace,jdbcType=VARCHAR},
+      </if>
+      <if test="humanBirthday != null" >
+        human_birthday = #{humanBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="humanAge != null" >
+        human_age = #{humanAge,jdbcType=SMALLINT},
+      </if>
+      <if test="humanEducatedDegree != null" >
+        human_educated_degree = #{humanEducatedDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="humanEducatedYears != null" >
+        human_educated_years = #{humanEducatedYears,jdbcType=SMALLINT},
+      </if>
+      <if test="humanEducatedMajor != null" >
+        human_educated_major = #{humanEducatedMajor,jdbcType=VARCHAR},
+      </if>
+      <if test="humanCollege != null" >
+        human_college = #{humanCollege,jdbcType=VARCHAR},
+      </if>
+      <if test="humanIdcard != null" >
+        human_idcard = #{humanIdcard,jdbcType=VARCHAR},
+      </if>
+      <if test="humanBirthplace != null" >
+        human_birthplace = #{humanBirthplace,jdbcType=VARCHAR},
+      </if>
+      <if test="demandSalaryStandard != null" >
+        demand_salary_standard = #{demandSalaryStandard,jdbcType=DECIMAL},
+      </if>
+      <if test="humanPicture != null" >
+        human_picture = #{humanPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="attachmentName != null" >
+        attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        check_status = #{checkStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="register != null" >
+        register = #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        regist_time = #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checker != null" >
+        checker = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="interviewStatus != null" >
+        interview_status = #{interviewStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="totalPoints != null" >
+        total_points = #{totalPoints,jdbcType=REAL},
+      </if>
+      <if test="testAmount != null" >
+        test_amount = #{testAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="testChecker != null" >
+        test_checker = #{testChecker,jdbcType=VARCHAR},
+      </if>
+      <if test="testCheckTime != null" >
+        test_check_time = #{testCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passRegister != null" >
+        pass_register = #{passRegister,jdbcType=VARCHAR},
+      </if>
+      <if test="passRegistTime != null" >
+        pass_regist_time = #{passRegistTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passChecker != null" >
+        pass_checker = #{passChecker,jdbcType=VARCHAR},
+      </if>
+      <if test="passCheckTime != null" >
+        pass_check_time = #{passCheckTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="passCheckStatus != null" >
+        pass_check_status = #{passCheckStatus,jdbcType=SMALLINT},
+      </if>
+      <if test="passCheckcomment != null" >
+        pass_checkComment = #{passCheckcomment,jdbcType=VARCHAR},
+      </if>
+      <if test="passPasscomment != null" >
+        pass_passComment = #{passPasscomment,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+      <if test="humanHistoryRecords != null" >
+        human_history_records = #{humanHistoryRecords,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="recomandation != null" >
+        recomandation = #{recomandation,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where res_id = #{resId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hr.entity.EngageResumeWithBLOBs" >
+    update engage_resume
+    set human_name = #{humanName,jdbcType=VARCHAR},
+      engage_type = #{engageType,jdbcType=VARCHAR},
+      human_address = #{humanAddress,jdbcType=VARCHAR},
+      human_postcode = #{humanPostcode,jdbcType=VARCHAR},
+      human_major_id = #{humanMajorId,jdbcType=CHAR},
+      hunma_major_name = #{hunmaMajorName,jdbcType=VARCHAR},
+      human_major_kind_id = #{humanMajorKindId,jdbcType=CHAR},
+      human_major_kind_name = #{humanMajorKindName,jdbcType=VARCHAR},
+      human_telephone = #{humanTelephone,jdbcType=VARCHAR},
+      human_homephone = #{humanHomephone,jdbcType=VARCHAR},
+      human_mobilephone = #{humanMobilephone,jdbcType=VARCHAR},
+      human_email = #{humanEmail,jdbcType=VARCHAR},
+      human_hobby = #{humanHobby,jdbcType=VARCHAR},
+      human_specility = #{humanSpecility,jdbcType=VARCHAR},
+      human_sex = #{humanSex,jdbcType=CHAR},
+      human_religion = #{humanReligion,jdbcType=VARCHAR},
+      human_party = #{humanParty,jdbcType=VARCHAR},
+      human_nationality = #{humanNationality,jdbcType=VARCHAR},
+      human_race = #{humanRace,jdbcType=VARCHAR},
+      human_birthday = #{humanBirthday,jdbcType=TIMESTAMP},
+      human_age = #{humanAge,jdbcType=SMALLINT},
+      human_educated_degree = #{humanEducatedDegree,jdbcType=VARCHAR},
+      human_educated_years = #{humanEducatedYears,jdbcType=SMALLINT},
+      human_educated_major = #{humanEducatedMajor,jdbcType=VARCHAR},
+      human_college = #{humanCollege,jdbcType=VARCHAR},
+      human_idcard = #{humanIdcard,jdbcType=VARCHAR},
+      human_birthplace = #{humanBirthplace,jdbcType=VARCHAR},
+      demand_salary_standard = #{demandSalaryStandard,jdbcType=DECIMAL},
+      human_picture = #{humanPicture,jdbcType=VARCHAR},
+      attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=SMALLINT},
+      register = #{register,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      checker = #{checker,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      interview_status = #{interviewStatus,jdbcType=SMALLINT},
+      total_points = #{totalPoints,jdbcType=REAL},
+      test_amount = #{testAmount,jdbcType=SMALLINT},
+      test_checker = #{testChecker,jdbcType=VARCHAR},
+      test_check_time = #{testCheckTime,jdbcType=TIMESTAMP},
+      pass_register = #{passRegister,jdbcType=VARCHAR},
+      pass_regist_time = #{passRegistTime,jdbcType=TIMESTAMP},
+      pass_checker = #{passChecker,jdbcType=VARCHAR},
+      pass_check_time = #{passCheckTime,jdbcType=TIMESTAMP},
+      pass_check_status = #{passCheckStatus,jdbcType=SMALLINT},
+      pass_checkComment = #{passCheckcomment,jdbcType=VARCHAR},
+      pass_passComment = #{passPasscomment,jdbcType=VARCHAR},
+      update_dateTime = #{updateDatetime,jdbcType=DATE},
+      human_history_records = #{humanHistoryRecords,jdbcType=LONGVARCHAR},
+      remark = #{remark,jdbcType=LONGVARCHAR},
+      recomandation = #{recomandation,jdbcType=LONGVARCHAR}
+    where res_id = #{resId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.EngageResume" >
+    update engage_resume
+    set human_name = #{humanName,jdbcType=VARCHAR},
+      engage_type = #{engageType,jdbcType=VARCHAR},
+      human_address = #{humanAddress,jdbcType=VARCHAR},
+      human_postcode = #{humanPostcode,jdbcType=VARCHAR},
+      human_major_id = #{humanMajorId,jdbcType=CHAR},
+      hunma_major_name = #{hunmaMajorName,jdbcType=VARCHAR},
+      human_major_kind_id = #{humanMajorKindId,jdbcType=CHAR},
+      human_major_kind_name = #{humanMajorKindName,jdbcType=VARCHAR},
+      human_telephone = #{humanTelephone,jdbcType=VARCHAR},
+      human_homephone = #{humanHomephone,jdbcType=VARCHAR},
+      human_mobilephone = #{humanMobilephone,jdbcType=VARCHAR},
+      human_email = #{humanEmail,jdbcType=VARCHAR},
+      human_hobby = #{humanHobby,jdbcType=VARCHAR},
+      human_specility = #{humanSpecility,jdbcType=VARCHAR},
+      human_sex = #{humanSex,jdbcType=CHAR},
+      human_religion = #{humanReligion,jdbcType=VARCHAR},
+      human_party = #{humanParty,jdbcType=VARCHAR},
+      human_nationality = #{humanNationality,jdbcType=VARCHAR},
+      human_race = #{humanRace,jdbcType=VARCHAR},
+      human_birthday = #{humanBirthday,jdbcType=TIMESTAMP},
+      human_age = #{humanAge,jdbcType=SMALLINT},
+      human_educated_degree = #{humanEducatedDegree,jdbcType=VARCHAR},
+      human_educated_years = #{humanEducatedYears,jdbcType=SMALLINT},
+      human_educated_major = #{humanEducatedMajor,jdbcType=VARCHAR},
+      human_college = #{humanCollege,jdbcType=VARCHAR},
+      human_idcard = #{humanIdcard,jdbcType=VARCHAR},
+      human_birthplace = #{humanBirthplace,jdbcType=VARCHAR},
+      demand_salary_standard = #{demandSalaryStandard,jdbcType=DECIMAL},
+      human_picture = #{humanPicture,jdbcType=VARCHAR},
+      attachment_name = #{attachmentName,jdbcType=VARCHAR},
+      check_status = #{checkStatus,jdbcType=SMALLINT},
+      register = #{register,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      checker = #{checker,jdbcType=VARCHAR},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      interview_status = #{interviewStatus,jdbcType=SMALLINT},
+      total_points = #{totalPoints,jdbcType=REAL},
+      test_amount = #{testAmount,jdbcType=SMALLINT},
+      test_checker = #{testChecker,jdbcType=VARCHAR},
+      test_check_time = #{testCheckTime,jdbcType=TIMESTAMP},
+      pass_register = #{passRegister,jdbcType=VARCHAR},
+      pass_regist_time = #{passRegistTime,jdbcType=TIMESTAMP},
+      pass_checker = #{passChecker,jdbcType=VARCHAR},
+      pass_check_time = #{passCheckTime,jdbcType=TIMESTAMP},
+      pass_check_status = #{passCheckStatus,jdbcType=SMALLINT},
+      pass_checkComment = #{passCheckcomment,jdbcType=VARCHAR},
+      pass_passComment = #{passPasscomment,jdbcType=VARCHAR},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where res_id = #{resId,jdbcType=SMALLINT}
+  </update>
+</mapper>

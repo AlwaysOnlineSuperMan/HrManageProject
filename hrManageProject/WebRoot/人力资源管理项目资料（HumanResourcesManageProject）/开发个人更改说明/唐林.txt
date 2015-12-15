@@ -1,0 +1,2 @@
+µ÷¶¯µÇ¼Ç  select * from human_file 
+select * from major_change where major_id = 1

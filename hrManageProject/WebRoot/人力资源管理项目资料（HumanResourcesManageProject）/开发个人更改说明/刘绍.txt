@@ -1,0 +1,22 @@
+
+   薪资标准管理：
+  	●薪资标准登记：
+	   	~点击薪资标准登记时，获取当前登录人  设置为默认的登记人 
+	   	~由系统自动生成薪资标准编号（根据系统时间年月日生成）
+	   	~JSP页面（salaryCriterion/salarystandard_register.jsp）
+	   	~点击提交后将数据添加至salary_standard_details 薪酬标准单详细信息表
+	   		与salary_standard  薪酬标准基本信息表中（通过状态为2▕没通过▕）
+	●薪资标准登记复核：
+	   	~点击薪资标准登记时，获取当前登录人  设置为默认的登记人 
+	   	~由系统自动生成薪资标准编号（根据系统时间年月日生成）
+	   	~JSP页面（salaryCriterion/salarystandard_register.jsp）
+	   	
+	●薪资标准查询：
+	   	~点击薪资标准登记时，获取当前登录人  设置为默认的登记人 
+	   	~由系统自动生成薪资标准编号（根据系统时间年月日生成）
+	   	~JSP页面（salaryCriterion/salarystandard_register.jsp）
+	   	
+	●薪资标准变更：
+	   	~点击薪资标准登记时，获取当前登录人  设置为默认的登记人 
+	   	~由系统自动生成薪资标准编号（根据系统时间年月日生成）
+	   	~JSP页面（salaryCriterion/salarystandard_register.jsp）

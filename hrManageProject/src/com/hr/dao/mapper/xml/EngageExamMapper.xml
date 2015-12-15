@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.EngageExamMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.EngageExam" >
+    <id column="exa_id" property="exaId" jdbcType="SMALLINT" />
+    <result column="exam_number" property="examNumber" jdbcType="VARCHAR" />
+    <result column="major_kind_id" property="majorKindId" jdbcType="CHAR" />
+    <result column="major_kind_name" property="majorKindName" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="SMALLINT" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+    <result column="register" property="register" jdbcType="VARCHAR" />
+    <result column="regist_time" property="registTime" jdbcType="TIMESTAMP" />
+    <result column="limite_time" property="limiteTime" jdbcType="SMALLINT" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    exa_id, exam_number, major_kind_id, major_kind_name, major_id, major_name, register, 
+    regist_time, limite_time, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from engage_exam
+    where exa_id = #{exaId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from engage_exam
+    where exa_id = #{exaId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.EngageExam" >
+    insert into engage_exam (exa_id, exam_number, major_kind_id, 
+      major_kind_name, major_id, major_name, 
+      register, regist_time, limite_time, 
+      update_dateTime)
+    values (#{exaId,jdbcType=SMALLINT}, #{examNumber,jdbcType=VARCHAR}, #{majorKindId,jdbcType=CHAR}, 
+      #{majorKindName,jdbcType=VARCHAR}, #{majorId,jdbcType=SMALLINT}, #{majorName,jdbcType=VARCHAR}, 
+      #{register,jdbcType=VARCHAR}, #{registTime,jdbcType=TIMESTAMP}, #{limiteTime,jdbcType=SMALLINT}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.EngageExam" >
+    insert into engage_exam
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="exaId != null" >
+        exa_id,
+      </if>
+      <if test="examNumber != null" >
+        exam_number,
+      </if>
+      <if test="majorKindId != null" >
+        major_kind_id,
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="majorName != null" >
+        major_name,
+      </if>
+      <if test="register != null" >
+        register,
+      </if>
+      <if test="registTime != null" >
+        regist_time,
+      </if>
+      <if test="limiteTime != null" >
+        limite_time,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="exaId != null" >
+        #{exaId,jdbcType=SMALLINT},
+      </if>
+      <if test="examNumber != null" >
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="majorKindId != null" >
+        #{majorKindId,jdbcType=CHAR},
+      </if>
+      <if test="majorKindName != null" >
+        #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorName != null" >
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="register != null" >
+        #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limiteTime != null" >
+        #{limiteTime,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.EngageExam" >
+    update engage_exam
+    <set >
+      <if test="examNumber != null" >
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="majorKindId != null" >
+        major_kind_id = #{majorKindId,jdbcType=CHAR},
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorName != null" >
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="register != null" >
+        register = #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        regist_time = #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limiteTime != null" >
+        limite_time = #{limiteTime,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where exa_id = #{exaId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.EngageExam" >
+    update engage_exam
+    set exam_number = #{examNumber,jdbcType=VARCHAR},
+      major_kind_id = #{majorKindId,jdbcType=CHAR},
+      major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=SMALLINT},
+      major_name = #{majorName,jdbcType=VARCHAR},
+      register = #{register,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      limite_time = #{limiteTime,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where exa_id = #{exaId,jdbcType=SMALLINT}
+  </update>
+</mapper>

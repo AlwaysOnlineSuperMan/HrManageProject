@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+  <!--  
+ 	 模拟这样配置：
+    <package name="sysUser" namespace="/" extends="json-default">
+			<action name="sysUser" class="sysUser" >
+				<result name="doLogin" type="json"></result>
+				<result name="toLogin">/login.jsp</result>
+			</action>
+    </package>
+   -->
+    <package name="SalaryStandard" namespace="/" extends="struts-default">
+			<action name="SalaryStandard" class="SalaryStandardActionBeanID" >
+				<result name="doSalarystandard_register">/page/salaryCriterion/salarystandard_register.jsp</result>
+				<result name="getStandardBycheckstatus">/page/salaryCriterion/salarystandard_check_list.jsp</result>
+				<result name="addSalarystandard_register">/page/salaryCriterion/salarystandard_register_success.jsp</result>
+				<result name="getStandardByssdId">/page/salaryCriterion/salarystandard_check.jsp</result>
+				<result name="updateStandard">/page/salaryCriterion/salarystandard_check_success.jsp</result>
+				<result name="getBycondition">/page/salaryCriterion/salarystandard_query_list.jsp</result>
+				<result name="getStandardByStandardId">/page/salaryCriterion/salarystandard_query.jsp</result>
+				
+			</action>
+    </package>
+</struts>

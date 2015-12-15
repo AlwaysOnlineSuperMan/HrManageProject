@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.TrainingMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.Training" >
+    <id column="tra_id" property="traId" jdbcType="SMALLINT" />
+    <result column="major_kind_id" property="majorKindId" jdbcType="CHAR" />
+    <result column="major_kind_name" property="majorKindName" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="CHAR" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+    <result column="human_id" property="humanId" jdbcType="VARCHAR" />
+    <result column="human_name" property="humanName" jdbcType="VARCHAR" />
+    <result column="training_item" property="trainingItem" jdbcType="VARCHAR" />
+    <result column="training_time" property="trainingTime" jdbcType="TIMESTAMP" />
+    <result column="training_hour" property="trainingHour" jdbcType="INTEGER" />
+    <result column="training_degree" property="trainingDegree" jdbcType="VARCHAR" />
+    <result column="register" property="register" jdbcType="VARCHAR" />
+    <result column="checker" property="checker" jdbcType="VARCHAR" />
+    <result column="regist_time" property="registTime" jdbcType="TIMESTAMP" />
+    <result column="check_time" property="checkTime" jdbcType="TIMESTAMP" />
+    <result column="checkstatus" property="checkstatus" jdbcType="SMALLINT" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hr.entity.Training" extends="BaseResultMap" >
+    <result column="remark" property="remark" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    tra_id, major_kind_id, major_kind_name, major_id, major_name, human_id, human_name, 
+    training_item, training_time, training_hour, training_degree, register, checker, 
+    regist_time, check_time, checkstatus, update_dateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from training
+    where tra_id = #{traId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from training
+    where tra_id = #{traId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.Training" >
+    insert into training (tra_id, major_kind_id, major_kind_name, 
+      major_id, major_name, human_id, 
+      human_name, training_item, training_time, 
+      training_hour, training_degree, register, 
+      checker, regist_time, check_time, 
+      checkstatus, update_dateTime, remark
+      )
+    values (#{traId,jdbcType=SMALLINT}, #{majorKindId,jdbcType=CHAR}, #{majorKindName,jdbcType=VARCHAR}, 
+      #{majorId,jdbcType=CHAR}, #{majorName,jdbcType=VARCHAR}, #{humanId,jdbcType=VARCHAR}, 
+      #{humanName,jdbcType=VARCHAR}, #{trainingItem,jdbcType=VARCHAR}, #{trainingTime,jdbcType=TIMESTAMP}, 
+      #{trainingHour,jdbcType=INTEGER}, #{trainingDegree,jdbcType=VARCHAR}, #{register,jdbcType=VARCHAR}, 
+      #{checker,jdbcType=VARCHAR}, #{registTime,jdbcType=TIMESTAMP}, #{checkTime,jdbcType=TIMESTAMP}, 
+      #{checkstatus,jdbcType=SMALLINT}, #{updateDatetime,jdbcType=DATE}, #{remark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.Training" >
+    insert into training
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="traId != null" >
+        tra_id,
+      </if>
+      <if test="majorKindId != null" >
+        major_kind_id,
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="majorName != null" >
+        major_name,
+      </if>
+      <if test="humanId != null" >
+        human_id,
+      </if>
+      <if test="humanName != null" >
+        human_name,
+      </if>
+      <if test="trainingItem != null" >
+        training_item,
+      </if>
+      <if test="trainingTime != null" >
+        training_time,
+      </if>
+      <if test="trainingHour != null" >
+        training_hour,
+      </if>
+      <if test="trainingDegree != null" >
+        training_degree,
+      </if>
+      <if test="register != null" >
+        register,
+      </if>
+      <if test="checker != null" >
+        checker,
+      </if>
+      <if test="registTime != null" >
+        regist_time,
+      </if>
+      <if test="checkTime != null" >
+        check_time,
+      </if>
+      <if test="checkstatus != null" >
+        checkstatus,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="traId != null" >
+        #{traId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorKindId != null" >
+        #{majorKindId,jdbcType=CHAR},
+      </if>
+      <if test="majorKindName != null" >
+        #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=CHAR},
+      </if>
+      <if test="majorName != null" >
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanId != null" >
+        #{humanId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanName != null" >
+        #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingItem != null" >
+        #{trainingItem,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingTime != null" >
+        #{trainingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingHour != null" >
+        #{trainingHour,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDegree != null" >
+        #{trainingDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="register != null" >
+        #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null" >
+        #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null" >
+        #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkstatus != null" >
+        #{checkstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.Training" >
+    update training
+    <set >
+      <if test="majorKindId != null" >
+        major_kind_id = #{majorKindId,jdbcType=CHAR},
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=CHAR},
+      </if>
+      <if test="majorName != null" >
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="humanId != null" >
+        human_id = #{humanId,jdbcType=VARCHAR},
+      </if>
+      <if test="humanName != null" >
+        human_name = #{humanName,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingItem != null" >
+        training_item = #{trainingItem,jdbcType=VARCHAR},
+      </if>
+      <if test="trainingTime != null" >
+        training_time = #{trainingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trainingHour != null" >
+        training_hour = #{trainingHour,jdbcType=INTEGER},
+      </if>
+      <if test="trainingDegree != null" >
+        training_degree = #{trainingDegree,jdbcType=VARCHAR},
+      </if>
+      <if test="register != null" >
+        register = #{register,jdbcType=VARCHAR},
+      </if>
+      <if test="checker != null" >
+        checker = #{checker,jdbcType=VARCHAR},
+      </if>
+      <if test="registTime != null" >
+        regist_time = #{registTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkTime != null" >
+        check_time = #{checkTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkstatus != null" >
+        checkstatus = #{checkstatus,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where tra_id = #{traId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hr.entity.Training" >
+    update training
+    set major_kind_id = #{majorKindId,jdbcType=CHAR},
+      major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=CHAR},
+      major_name = #{majorName,jdbcType=VARCHAR},
+      human_id = #{humanId,jdbcType=VARCHAR},
+      human_name = #{humanName,jdbcType=VARCHAR},
+      training_item = #{trainingItem,jdbcType=VARCHAR},
+      training_time = #{trainingTime,jdbcType=TIMESTAMP},
+      training_hour = #{trainingHour,jdbcType=INTEGER},
+      training_degree = #{trainingDegree,jdbcType=VARCHAR},
+      register = #{register,jdbcType=VARCHAR},
+      checker = #{checker,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      checkstatus = #{checkstatus,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE},
+      remark = #{remark,jdbcType=LONGVARCHAR}
+    where tra_id = #{traId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.Training" >
+    update training
+    set major_kind_id = #{majorKindId,jdbcType=CHAR},
+      major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=CHAR},
+      major_name = #{majorName,jdbcType=VARCHAR},
+      human_id = #{humanId,jdbcType=VARCHAR},
+      human_name = #{humanName,jdbcType=VARCHAR},
+      training_item = #{trainingItem,jdbcType=VARCHAR},
+      training_time = #{trainingTime,jdbcType=TIMESTAMP},
+      training_hour = #{trainingHour,jdbcType=INTEGER},
+      training_degree = #{trainingDegree,jdbcType=VARCHAR},
+      register = #{register,jdbcType=VARCHAR},
+      checker = #{checker,jdbcType=VARCHAR},
+      regist_time = #{registTime,jdbcType=TIMESTAMP},
+      check_time = #{checkTime,jdbcType=TIMESTAMP},
+      checkstatus = #{checkstatus,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where tra_id = #{traId,jdbcType=SMALLINT}
+  </update>
+</mapper>

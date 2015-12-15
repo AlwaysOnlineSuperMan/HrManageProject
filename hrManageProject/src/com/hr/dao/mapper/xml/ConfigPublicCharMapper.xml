@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.ConfigPublicCharMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.ConfigPublicChar" >
+    <id column="pbc_id" property="pbcId" jdbcType="SMALLINT" />
+    <result column="attribute_kind" property="attributeKind" jdbcType="VARCHAR" />
+    <result column="attribute_name" property="attributeName" jdbcType="VARCHAR" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+   <!--attribute_kind 查询-->
+  <select id="selectByAttributeKind" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_public_char
+    where attribute_kind = #{attributeKind,jdbcType=VARCHAR}
+  </select>
+   <!--查询所有-->
+     <select id="getConfigPublicCharByListAll" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_public_char
+  
+  </select>
+
+  <sql id="Base_Column_List" >
+    pbc_id, attribute_kind, attribute_name, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_public_char
+    where pbc_id = #{pbcId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from config_public_char
+    where pbc_id = #{pbcId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.ConfigPublicChar" >
+    insert into config_public_char (pbc_id, attribute_kind, attribute_name, 
+      update_dateTime)
+    values (#{pbcId,jdbcType=SMALLINT}, #{attributeKind,jdbcType=VARCHAR}, #{attributeName,jdbcType=VARCHAR}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  
+  
+  
+  
+  
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.hr.entity.ConfigPublicChar" >
+    insert into config_public_char
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pbcId != null" >
+        pbc_id,
+      </if>
+      <if test="attributeKind != null" >
+        attribute_kind,
+      </if>
+      <if test="attributeName != null" >
+        attribute_name,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pbcId != null" >
+        #{pbcId,jdbcType=SMALLINT},
+      </if>
+      <if test="attributeKind != null" >
+        #{attributeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeName != null" >
+        #{attributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.ConfigPublicChar" >
+    update config_public_char
+    <set >
+      <if test="attributeKind != null" >
+        attribute_kind = #{attributeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeName != null" >
+        attribute_name = #{attributeName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where pbc_id = #{pbcId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.ConfigPublicChar" >
+    update config_public_char
+    set attribute_kind = #{attributeKind,jdbcType=VARCHAR},
+      attribute_name = #{attributeName,jdbcType=VARCHAR},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where pbc_id = #{pbcId,jdbcType=SMALLINT}
+  </update>
+</mapper>

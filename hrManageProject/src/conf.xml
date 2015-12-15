@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>						
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<mappers>
+	
+	<mapper resource="com/hr/dao/mapper/xml/BonusMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/ConfigFileFirstKindMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigFileSecondKindMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigFileThirdKindMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigMajorDesignationMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigMajorKindMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigMajorMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigPrimaryKeyMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigPublicCharMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigQuestionFirstKindMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/ConfigQuestionSecondKindMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/EngageAnswerDetailsMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageAnswerMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageExamDetailsMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageExamMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/TrainingMapper.xml"/>	
+	
+	<mapper resource="com/hr/dao/mapper/xml/EngageInterviewMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageMajorReleaseMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageResumeMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/EngageSubjectsMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/RoleMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/RoleRightMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/RightMapper.xml"/>	
+	
+	<mapper resource="com/hr/dao/mapper/xml/SalaryGrantDetailsMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/SalaryGrantMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/SalaryStandardDetailsMapper.xml"/>
+	<mapper resource="com/hr/dao/mapper/xml/SalaryStandardMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/HumanFileDigMapper.xml"/>
+	
+	<mapper resource="com/hr/dao/mapper/xml/MajorChangeMapper.xml"/>
+
+	<mapper resource="com/hr/dao/mapper/xml/UsersMapper.xml"/>
+	
+	
+	<!--  -->
+		<mapper resource="com/hr/dao/mapper/xml/HumanFileMapper.xml"/>
+	
+	
+	</mappers>
+</configuration>

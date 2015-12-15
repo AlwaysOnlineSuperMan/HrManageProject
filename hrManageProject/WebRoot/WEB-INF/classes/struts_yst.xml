@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant><!--
+    <package name="sysUser" namespace="/" extends="json-default">
+			<action name="sysUser" class="sysUser" >
+				<result name="doLogin" type="json"></result>
+				<result name="toLogin">/login.jsp</result>
+			</action>
+    </package>-->
+    <package name="engage" namespace="/" extends="struts-default">
+    	<action name="engageMajorRelease" class="EngageMajorReleaseBeanID">
+				<result name="toEngageMajorRelease" type="dispatcher">page/recruit/position/position_register.jsp</result>
+				<result name="toengageMajorChange" type="dispatcher">page/recruit/position/position_change_update.jsp</result>
+				<result name="saveRegiste" type="redirect">engageMajorRelease!getEngageMajorRelease.action</result>
+				<result name="toEngageMajorlist" type="dispatcher">page/recruit/position/position_change_update.jsp</result>
+				<result name="EngageMajorlist" type="dispatcher">page/recruit/position/position_release_search.jsp</result>
+				<result name="updatePosition" type="dispatcher">page/recruit/position/position_release_change.jsp</result>
+				<result name="ResumeRegister" type="dispatcher">page/recruit/resume/register.jsp</result>
+		</action>
+    </package>
+</struts>

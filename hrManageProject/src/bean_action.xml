@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="UsersActionBeanID" class="com.hr.action.UsersAction" scope="prototype">
+		<property name="UsersService" ref="UsersService"></property>
+	</bean>
+	
+	
+	
+	<bean id="RoleActionBeanID" class="com.hr.action.RoleAction" scope="prototype">
+		<property name="roleService" ref="RoleService"></property>
+	</bean>
+	
+	
+	
+	<bean id="SalaryStandardActionBeanID" class="com.hr.action.SalaryStandardAction" scope="prototype">
+		<property name="iSalaryStandardService" ref="SalaryStandardService"></property>
+		<property name="charService" ref="ConfigPublicCharService"></property>
+		
+	</bean>
+	<bean id="HumanFileBeanID" class="com.hr.action.HumanFileAction" scope="prototype">
+		<property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+		<property name="configFileSecondKindService" ref="ConfigFileSecondKindService"></property>
+		<property name="configFileThirdKindService" ref="ConfigFileThirdKindService"></property>
+		<property name="configMajorKindService" ref="ConfigMajorKindService"></property>
+		<property name="configMajorService" ref="ConfigMajorService"/>
+		<property name="configMajorDesignationService" ref="ConfigMajorDesignationService"/>
+		<property name="configPublicCharService" ref="ConfigPublicCharService"/>
+		<property name="salaryStandardService" ref="SalaryStandardService"/>
+		<property name="humanFileService" ref="HumanFileService"/>
+	</bean>
+	<bean id="EngageMajorReleaseBeanID" class="com.hr.action.EngageMajorReleaseAction" scope="prototype">
+		<property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+		<property name="configFileSecondKindService" ref="ConfigFileSecondKindService"></property>
+		<property name="configFileThirdKindService" ref="ConfigFileThirdKindService"></property>
+		<property name="configMajorKindService" ref="ConfigMajorKindService"></property>
+		<property name="configMajorService" ref="ConfigMajorService"></property>
+		<property name="configMajorDesignationService" ref="ConfigMajorDesignationService"></property>
+		<property name="engageMajorReleaseService" ref="EngageMajorReleaseService"></property>
+	</bean>
+	
+	<bean id="MajorChangeAction" class="com.hr.action.MajorChangeAction">
+		<property name="imajorChangeService" ref="MajorChangeService"></property>
+		<property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+		<property name="configMajorKindService" ref="ConfigMajorKindService"></property>
+		<property name="configFileSecondKindService" ref="ConfigFileSecondKindService"></property>
+		<property name="configMajorService" ref="ConfigMajorService"/>
+		<property name="configFileThirdKindService" ref="ConfigFileThirdKindService"></property>
+		<property name="salaryStandardDetailsService" ref="SalaryStandardDetailsService"></property>
+		<property name="humanFileService" ref="HumanFileService"></property>
+	</bean>
+	   <bean id="downLoad" class="com.hr.action.DownLoadAction" scope="prototype">
+	</bean>
+	   <bean id="ConfigFileFirstKindAction" class="com.hr.action.ConfigFileFirstKindAction" scope="prototype">
+	   <property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+	</bean>
+	   <bean id="ConfigFileSecondKindAction" class="com.hr.action.ConfigFileSecondKindAction" scope="prototype">
+	   <property name="configFileSecondKindService" ref="ConfigFileSecondKindService"></property>
+	   <property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+	</bean>
+	
+	
+	   <bean id="ConfigFileThirdKindAction" class="com.hr.action.ConfigFileThirdKindAction" scope="prototype">
+	   <property name="configFileFirstKindService" ref="ConfigFileFirstKindService"></property>
+	   <property name="configFileSecondKindService" ref="ConfigFileSecondKindService"></property>
+		<property name="configFileThirdKindService" ref="ConfigFileThirdKindService"></property>
+	</bean>
+	
+	   <bean id="ConfigPublicCharAction" class="com.hr.action.ConfigPublicCharAction" scope="prototype">
+	   <property name="configPublicCharService" ref="ConfigPublicCharService"></property>
+	</bean>
+	 <bean id="ConfigMajorKindAction" class="com.hr.action.ConfigMajorKindAction" scope="prototype">
+		<property name="configMajorKindService" ref="ConfigMajorKindService"></property>
+	</bean>
+	 <bean id="ConfigMajorAction" class="com.hr.action.ConfigMajorAction" scope="prototype">
+		<property name="configMajorKindService" ref="ConfigMajorKindService"></property>
+		<property name="configMajorService" ref="ConfigMajorService"/>
+	</bean>
+	
+	 <bean id="ConfigMajorDesignationAction" class="com.hr.action.ConfigMajorDesignationAction" scope="prototype">
+	<property name="configMajorDesignationService" ref="ConfigMajorDesignationService"/>
+	</bean>
+</beans>

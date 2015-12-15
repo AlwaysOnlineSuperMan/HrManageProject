@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.EngageExamDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.EngageExamDetails" >
+    <id column="exd_id" property="exdId" jdbcType="SMALLINT" />
+    <result column="exam_number" property="examNumber" jdbcType="VARCHAR" />
+    <result column="first_kind_id" property="firstKindId" jdbcType="CHAR" />
+    <result column="first_kind_name" property="firstKindName" jdbcType="VARCHAR" />
+    <result column="second_kind_id" property="secondKindId" jdbcType="CHAR" />
+    <result column="second_kind_name" property="secondKindName" jdbcType="VARCHAR" />
+    <result column="question_amount" property="questionAmount" jdbcType="SMALLINT" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    exd_id, exam_number, first_kind_id, first_kind_name, second_kind_id, second_kind_name, 
+    question_amount, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from engage_exam_details
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from engage_exam_details
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.EngageExamDetails" >
+    insert into engage_exam_details (exd_id, exam_number, first_kind_id, 
+      first_kind_name, second_kind_id, second_kind_name, 
+      question_amount, update_dateTime)
+    values (#{exdId,jdbcType=SMALLINT}, #{examNumber,jdbcType=VARCHAR}, #{firstKindId,jdbcType=CHAR}, 
+      #{firstKindName,jdbcType=VARCHAR}, #{secondKindId,jdbcType=CHAR}, #{secondKindName,jdbcType=VARCHAR}, 
+      #{questionAmount,jdbcType=SMALLINT}, #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.EngageExamDetails" >
+    insert into engage_exam_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="exdId != null" >
+        exd_id,
+      </if>
+      <if test="examNumber != null" >
+        exam_number,
+      </if>
+      <if test="firstKindId != null" >
+        first_kind_id,
+      </if>
+      <if test="firstKindName != null" >
+        first_kind_name,
+      </if>
+      <if test="secondKindId != null" >
+        second_kind_id,
+      </if>
+      <if test="secondKindName != null" >
+        second_kind_name,
+      </if>
+      <if test="questionAmount != null" >
+        question_amount,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="exdId != null" >
+        #{exdId,jdbcType=SMALLINT},
+      </if>
+      <if test="examNumber != null" >
+        #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="firstKindId != null" >
+        #{firstKindId,jdbcType=CHAR},
+      </if>
+      <if test="firstKindName != null" >
+        #{firstKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondKindId != null" >
+        #{secondKindId,jdbcType=CHAR},
+      </if>
+      <if test="secondKindName != null" >
+        #{secondKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="questionAmount != null" >
+        #{questionAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.EngageExamDetails" >
+    update engage_exam_details
+    <set >
+      <if test="examNumber != null" >
+        exam_number = #{examNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="firstKindId != null" >
+        first_kind_id = #{firstKindId,jdbcType=CHAR},
+      </if>
+      <if test="firstKindName != null" >
+        first_kind_name = #{firstKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="secondKindId != null" >
+        second_kind_id = #{secondKindId,jdbcType=CHAR},
+      </if>
+      <if test="secondKindName != null" >
+        second_kind_name = #{secondKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="questionAmount != null" >
+        question_amount = #{questionAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.EngageExamDetails" >
+    update engage_exam_details
+    set exam_number = #{examNumber,jdbcType=VARCHAR},
+      first_kind_id = #{firstKindId,jdbcType=CHAR},
+      first_kind_name = #{firstKindName,jdbcType=VARCHAR},
+      second_kind_id = #{secondKindId,jdbcType=CHAR},
+      second_kind_name = #{secondKindName,jdbcType=VARCHAR},
+      question_amount = #{questionAmount,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where exd_id = #{exdId,jdbcType=SMALLINT}
+  </update>
+</mapper>

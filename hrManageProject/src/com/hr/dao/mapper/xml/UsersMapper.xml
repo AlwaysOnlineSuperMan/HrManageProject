@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.UsersMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.Users" >
+    <id column="u_id" property="userId" jdbcType="SMALLINT" />
+    <result column="u_name" property="userName" jdbcType="VARCHAR" />
+    <result column="u_true_name" property="userTrueName" jdbcType="VARCHAR" />
+    <result column="u_password" property="userPassword" jdbcType="VARCHAR" />
+     <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+    <association property="role" javaType="com.hr.entity.Role">
+		<id column="role_id" property="roleId" jdbcType="SMALLINT" />
+	    <result column="role_name" property="roleName" jdbcType="VARCHAR" />
+	    <result column="role_desc" property="roleDesc" jdbcType="VARCHAR" />
+	    <result column="role_flag" property="roleFlag" jdbcType="INTEGER" />
+	    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+	    <collection property="roleRights" ofType="com.hr.entity.RoleRight">
+	    		<id column="rf_id" property="rfId" jdbcType="SMALLINT" />
+			    <result column="rf_role_id" property="rfRoleId" jdbcType="SMALLINT" />
+			    <result column="rf_right_code" property="rfRightCode" jdbcType="VARCHAR" />
+			    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+	    </collection>
+    </association>
+  </resultMap>
+  
+  
+  
+  
+  <select id="getUsersToLogin" parameterType="hashmap" resultMap="BaseResultMap">
+			select * from Users u
+left join 
+role r
+on r.role_id=u.u_role_id
+left join role_right rr
+on rr.rf_role_id = r.role_id
+left join  rright rt 
+on rt.right_code=rr.rf_right_code
+where u_name = #{uName} and u_password=#{uPassWord}
+  </select>
+	
+	
+
+	<select id="selectUsersAllList" resultMap="BaseResultMap"  >
+   			select * from Users u left join role r on r.role_id=u.u_role_id
+  </select>
+	
+	
+	
+	
+  <sql id="Base_Column_List" >
+    u_id, u_name, u_true_name, u_password, u_role_id, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from users
+    where u_id = #{uId,jdbcType=SMALLINT}
+  </select>
+  
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from users
+    where u_id = #{uId,jdbcType=SMALLINT}
+  </delete>
+  
+  
+  <insert id="insert" parameterType="com.hr.entity.Users" >
+    insert into users (u_id, u_name, u_true_name, 
+      u_password, u_role_id, update_dateTime
+      )
+    values (#{uId,jdbcType=SMALLINT}, #{uName,jdbcType=VARCHAR}, #{uTrueName,jdbcType=VARCHAR}, 
+      #{uPassword,jdbcType=VARCHAR}, #{uRoleId,jdbcType=SMALLINT}, #{updateDatetime,jdbcType=DATE}
+      )
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.hr.entity.Users" >
+    insert into users
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        u_id,
+      </if>
+      <if test="uName != null" >
+        u_name,
+      </if>
+      <if test="uTrueName != null" >
+        u_true_name,
+      </if>
+      <if test="uPassword != null" >
+        u_password,
+      </if>
+      <if test="uRoleId != null" >
+        u_role_id,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="uId != null" >
+        #{uId,jdbcType=SMALLINT},
+      </if>
+      <if test="uName != null" >
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrueName != null" >
+        #{uTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uRoleId != null" >
+        #{uRoleId,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.Users" >
+    update users
+    <set >
+      <if test="uName != null" >
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uTrueName != null" >
+        u_true_name = #{uTrueName,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uRoleId != null" >
+        u_role_id = #{uRoleId,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.Users" >
+    update users
+    set u_name = #{uName,jdbcType=VARCHAR},
+      u_true_name = #{uTrueName,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_role_id = #{uRoleId,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where u_id = #{uId,jdbcType=SMALLINT}
+  </update>
+</mapper>

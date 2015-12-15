@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+  	<bean id="UsersDAO" class="com.hr.dao.UsersDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="RoleDao" class="com.hr.dao.RoleDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="SalaryStandardDao" class="com.hr.dao.SalaryStandardDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="SalaryStandardDetailsDao" class="com.hr.dao.SalaryStandarddetailsDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+
+	<bean id="ConfigFileFirstKindDAO" class="com.hr.dao.ConfigFileFirstKindDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ConfigFileSecondKindDAO" class="com.hr.dao.ConfigFileSecondKindDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ConfigFileThirdKindDAO" class="com.hr.dao.ConfigFileThirdKindDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>									
+	<bean id="ConfigMajorKindDAO" class="com.hr.dao.ConfigMajorKindDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="ConfigMajorDAO" class="com.hr.dao.ConfigMajorDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ConfigMajorDesignationDAO" class="com.hr.dao.ConfigMajorDesignationDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ConfigPublicCharDAO" class="com.hr.dao.ConfigPublicCharDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="MajorChangeDAO" class="com.hr.dao.MajorChangeDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="HumanFileDAO" class="com.hr.dao.HumanFileDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="HumanFileDigDAO" class="com.hr.dao.HumanFileDigDAO">
+		<property name="sqlSessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="EngageMajorReleaseDao" class="com.hr.dao.EngageMajorReleaseDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="SalaryStandarddetailsDao" class="com.hr.dao.SalaryStandarddetailsDao">
+		<property name="sqlSessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	</beans>

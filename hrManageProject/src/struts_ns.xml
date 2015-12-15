@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+
+    <package name="humanFile" namespace="/" extends="struts-default">
+			<action name="humanFile" class="HumanFileBeanID" >
+				<result name="toHumanRegister" type="dispatcher">page/humanResources/human_register.jsp</result>
+				<result name="toSevaRegiste" type="dispatcher">page/humanResources/register_choose_picture.jsp</result>
+				<result name="doSevaRegiste" type="dispatcher">page/humanResources/register_choose_picture.jsp</result>
+				<result name="toCheckList" type="dispatcher">page/humanResources/check_list.jsp</result>
+				<result name="doSevaRegisteByImage" type="dispatcher">page/humanResources/success.jsp</result>
+				<result name="tohumanCheck" type="dispatcher">page/humanResources/human_check.jsp</result>
+				<result name="dohumanCheck" type="dispatcher">page/humanResources/register_choose_picture.jsp</result>
+				<result name="reTohumanCheck" type="redirect">page/humanFile!toHumanCheck.action?humanId=${humanId}</result>
+		        <result name="toQueryList" type="dispatcher">/page/humanResources/query_list.jsp</result>
+		        <result name="toQueryListInformation" type="dispatcher">page/humanResources/query_list_information.jsp</result>
+				<result name="toDeleteList" type="dispatcher">page/humanResources/delete_list.jsp</result>
+				<result name="toDeleteListInformation" type="dispatcher">page/humanResources/delete_list_information.jsp</result>
+				<result name="doQueryListInformation" type="dispatcher">page/humanResources/success.jsp</result>
+				<result name="toDeleteForeverList" type="dispatcher">page/humanResources/delete_forever_list.jsp</result>
+				<result name="doDeleteForeverList" type="dispatcher">page/humanResources/success.jsp</result>
+				<result name="toRecoveryList" type="dispatcher">page/humanResources/recovery_list.jsp</result>
+				<result name="toRecoveryInformationList" type="dispatcher">page/humanResources/recovery_list_information.jsp</result>
+				<result name="toChangeList" type="dispatcher">page/humanResources/change_list.jsp</result>
+				<result name="toChangeListIformation" type="dispatcher">page/humanResources/change_list_information.jsp</result>
+				<result name="doChangeListIformation" type="redirect">page/humanFile!toChangeList.action</result>
+				
+			</action>
+    </package>
+  <package name="sysUser" namespace="/" extends="struts-default">
+			<action name="Users" class="UsersActionBeanID" >
+				<result name="doLogin" type="redirect">/page/index.jsp</result>
+				<result name="toLogin" type="dispatcher">/login.jsp</result>
+				<result name="input" type="dispatcher">/login.jsp</result>
+			</action>
+    </package>
+
+     <package name="Util" namespace="/" extends="struts-default">
+   	  <result-types>
+    		<result-type name="streamx" class="com.sunspoter.lib.web.struts2.dispatcher.StreamResultX"/>
+    	</result-types>
+			<action name="downLoad" class="downLoad" >
+				<result type="streamx">  
+					<param name="contentDisposition">
+					attachment;filename="${downFileName}"
+				</param>
+			</result>
+			</action>
+    </package>
+    
+     <package name="ConfigFileFirstKind" namespace="/" extends="struts-default">
+			<action name="configFileFirstKind" class="ConfigFileFirstKindAction" >
+				<result name="toFirsKindList" type="dispatcher">page/client/first_kind.jsp</result>
+				<result name="toFirstKindRegister" type="dispatcher">page/client/first_kind_register.jsp</result>
+				<result name="doFirstKindRegister" type="redirect">page/client/first_kind_register_success.jsp</result>
+				<result name="toFirstKindChange" type="dispatcher">page/client/first_kind_change.jsp</result>
+				<result name="doFirstKindChange" type="redirect">page/client/first_kind_change_success.jsp</result>
+			</action> 
+	</package>
+	<package name="ConfigFileSecondKind" namespace="/" extends="struts-default">
+		<action name="configFileSecondKind" class="ConfigFileSecondKindAction" >
+				<result name="toSecondKind" type="dispatcher">page/client/second_kind.jsp</result>
+				<result name="toSecondKindRegister" type="dispatcher">page/client/second_kind_register.jsp</result>
+				<result name="doSecondKindRegister" type="redirect">page/client/second_kind_register_success.jsp</result>
+				<result name="toSecondKindChange" type="dispatcher">page/client/second_kind_change.jsp</result>
+				<result name="doSecondKindChange" type="redirect">page/client/second_kind_change_success.jsp</result>
+			</action> 
+    </package>
+    
+    	<package name="ConfigFileThirdKindAction" namespace="/" extends="struts-default">
+		<action name="configFileThirdKind" class="ConfigFileThirdKindAction" >
+				<result name="toThirdKind" type="dispatcher">page/client/third_kind.jsp</result>
+				<result name="toThirdKindRegister" type="dispatcher">page/client/third_kind_register.jsp</result>
+				<result name="doThirdKindRegister" type="redirect">page/client/third_kind_register_success.jsp</result>
+				<result name="toThirdKindChange" type="dispatcher">page/client/third_kind_change.jsp</result>
+				<result name="doThirdKindChange" type="redirect">page/client/third_kind_change_success.jsp</result>
+			</action> 
+			
+			
+    </package>
+    	<package name="ConfigPublicCharActions" namespace="/" extends="struts-default">
+		<action name="configPublicChar" class="ConfigPublicCharAction" >
+			<result name="toPublicChar" type="dispatcher">page/client/public_char.jsp</result>
+			<result name="toPublicCharAdd" type="dispatcher">page/client/public_char_add.jsp</result>
+			<result name="doPublicCharAdd" type="redirect">page/client/public_char_add_success.jsp</result>
+			</action> 
+    </package>
+    <package name="ConfigMajorKindAction" namespace="/" extends="struts-default">
+		<action name="configMajorKind" class="ConfigMajorKindAction" >
+			<result name="toMajorKind" type="dispatcher">page/client/major_kind.jsp</result>
+			<result name="toMajorKindAdd" type="dispatcher">page/client/major_kind_add.jsp</result>
+			<result name="doMajorKindAdd" type="redirect">configMajorKind!toMajorKind.action</result>
+			</action> 
+    </package>
+    	<package name="ConfigMajorAction" namespace="/" extends="struts-default">
+		<action name="configMajor" class="ConfigMajorAction" >
+			<result name="toMajor" type="dispatcher">page/client/major.jsp</result>
+			<result name="toMajorAdd" type="dispatcher">page/client/major_add.jsp</result>
+				<result name="doMajorAdd" type="redirect">configMajor!toMajor.action</result>
+			</action> 
+    </package>
+    
+    <package name="ConfigMajorDesignationAction" namespace="/" extends="struts-default">
+		<action name="configMajorDesignationAction" class="ConfigMajorDesignationAction" >
+			<result name="toProfessionDesign" type="dispatcher">page/client/profession_design.jsp</result>
+			
+			</action> 
+    </package>
+</struts>

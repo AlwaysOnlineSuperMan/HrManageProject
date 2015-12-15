@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.SalaryStandardDetailsMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.SalaryStandardDetails" >
+    <id column="sdt_id" property="sdtId" jdbcType="SMALLINT" />
+    <result column="standard_id" property="standardId" jdbcType="VARCHAR" />
+    <result column="standard_name" property="standardName" jdbcType="VARCHAR" />
+    <result column="item_id" property="itemId" jdbcType="SMALLINT" />
+    <result column="item_name" property="itemName" jdbcType="VARCHAR" />
+    <result column="salary" property="salary" jdbcType="REAL" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  
+  <select id="selectAll" resultMap="BaseResultMap"> 
+  		select * from salary_standard_details
+  </select>
+  
+  <sql id="Base_Column_List" >
+    sdt_id, standard_id, standard_name, item_id, item_name, salary, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from salary_standard_details
+    where sdt_id = #{sdtId,jdbcType=SMALLINT}
+  </select>
+  <select id="selectByStandardId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from salary_standard_details
+    where standard_id = #{standardId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from salary_standard_details
+    where sdt_id = #{sdtId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.SalaryStandardDetails" >
+    insert into salary_standard_details (sdt_id, standard_id, standard_name, 
+      item_id, item_name, salary, 
+      update_dateTime)
+    values (#{sdtId,jdbcType=SMALLINT}, #{standardId,jdbcType=VARCHAR}, #{standardName,jdbcType=VARCHAR}, 
+      #{itemId,jdbcType=SMALLINT}, #{itemName,jdbcType=VARCHAR}, #{salary,jdbcType=REAL}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.SalaryStandardDetails" >
+    insert into salary_standard_details
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sdtId != null" >
+        sdt_id,
+      </if>
+      <if test="standardId != null" >
+        standard_id,
+      </if>
+      <if test="standardName != null" >
+        standard_name,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="itemName != null" >
+        item_name,
+      </if>
+      <if test="salary != null" >
+        salary,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sdtId != null" >
+        #{sdtId,jdbcType=SMALLINT},
+      </if>
+      <if test="standardId != null" >
+        #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=SMALLINT},
+      </if>
+      <if test="itemName != null" >
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        #{salary,jdbcType=REAL},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.SalaryStandardDetails" >
+    update salary_standard_details
+    <set >
+      <if test="standardId != null" >
+        standard_id = #{standardId,jdbcType=VARCHAR},
+      </if>
+      <if test="standardName != null" >
+        standard_name = #{standardName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=SMALLINT},
+      </if>
+      <if test="itemName != null" >
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="salary != null" >
+        salary = #{salary,jdbcType=REAL},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where item_id = #{itemId,jdbcType=SMALLINT} and item_name = #{itemName,jdbcType=VARCHAR} and standard_id = #{standardId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.SalaryStandardDetails" >
+    update salary_standard_details
+    set standard_id = #{standardId,jdbcType=VARCHAR},
+      standard_name = #{standardName,jdbcType=VARCHAR},
+      item_id = #{itemId,jdbcType=SMALLINT},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      salary = #{salary,jdbcType=REAL},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where sdt_id = #{sdtId,jdbcType=SMALLINT}
+  </update>
+</mapper>

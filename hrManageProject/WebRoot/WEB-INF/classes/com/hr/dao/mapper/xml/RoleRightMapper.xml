@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.RoleRightMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.RoleRight" >
+    <id column="rf_id" property="rfId" jdbcType="SMALLINT" />
+    <result column="rf_role_id" property="rfRoleId" jdbcType="SMALLINT" />
+    <result column="rf_right_code" property="rfRightCode" jdbcType="VARCHAR" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rf_id, rf_role_id, rf_right_code, update_dateTime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_right
+    where rf_id = #{rfId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from role_right
+    where rf_id = #{rfId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.RoleRight" >
+    insert into role_right (rf_id, rf_role_id, rf_right_code, 
+      update_dateTime)
+    values (#{rfId,jdbcType=SMALLINT}, #{rfRoleId,jdbcType=SMALLINT}, #{rfRightCode,jdbcType=VARCHAR}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.RoleRight" >
+    insert into role_right
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rfId != null" >
+        rf_id,
+      </if>
+      <if test="rfRoleId != null" >
+        rf_role_id,
+      </if>
+      <if test="rfRightCode != null" >
+        rf_right_code,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rfId != null" >
+        #{rfId,jdbcType=SMALLINT},
+      </if>
+      <if test="rfRoleId != null" >
+        #{rfRoleId,jdbcType=SMALLINT},
+      </if>
+      <if test="rfRightCode != null" >
+        #{rfRightCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.RoleRight" >
+    update role_right
+    <set >
+      <if test="rfRoleId != null" >
+        rf_role_id = #{rfRoleId,jdbcType=SMALLINT},
+      </if>
+      <if test="rfRightCode != null" >
+        rf_right_code = #{rfRightCode,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where rf_id = #{rfId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.RoleRight" >
+    update role_right
+    set rf_role_id = #{rfRoleId,jdbcType=SMALLINT},
+      rf_right_code = #{rfRightCode,jdbcType=VARCHAR},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where rf_id = #{rfId,jdbcType=SMALLINT}
+  </update>
+</mapper>

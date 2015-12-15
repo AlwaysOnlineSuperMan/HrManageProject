@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hr.dao.ConfigMajorMapper" >
+  <resultMap id="BaseResultMap" type="com.hr.entity.ConfigMajor" >
+    <id column="mak_id" property="makId" jdbcType="SMALLINT" />
+    <result column="major_kind_id" property="majorKindId" jdbcType="SMALLINT" />
+    <result column="major_kind_name" property="majorKindName" jdbcType="VARCHAR" />
+    <result column="major_id" property="majorId" jdbcType="CHAR" />
+    <result column="major_name" property="majorName" jdbcType="VARCHAR" />
+    <result column="test_amount" property="testAmount" jdbcType="SMALLINT" />
+    <result column="update_dateTime" property="updateDatetime" jdbcType="DATE" />
+  </resultMap>
+  <select id="selectByMajorKindId" resultMap="BaseResultMap" parameterType="hashmap" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_major
+    where major_kind_id = #{majorKindId}
+  </select>
+  
+  <sql id="Base_Column_List" >
+    mak_id, major_kind_id, major_kind_name, major_id, major_name, test_amount, update_dateTime
+  </sql>
+  
+  
+  <select id="getConfigMajorListAll" resultMap="BaseResultMap" parameterType="hashmap" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_major
+    
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Short" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_major
+    where mak_id = #{makId,jdbcType=SMALLINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Short" >
+    delete from config_major
+    where mak_id = #{makId,jdbcType=SMALLINT}
+  </delete>
+  <insert id="insert" parameterType="com.hr.entity.ConfigMajor" >
+    insert into config_major (mak_id, major_kind_id, major_kind_name, 
+      major_id, major_name, test_amount, 
+      update_dateTime)
+    values (#{makId,jdbcType=SMALLINT}, #{majorKindId,jdbcType=SMALLINT}, #{majorKindName,jdbcType=VARCHAR}, 
+      #{majorId,jdbcType=CHAR}, #{majorName,jdbcType=VARCHAR}, #{testAmount,jdbcType=SMALLINT}, 
+      #{updateDatetime,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hr.entity.ConfigMajor" >
+    insert into config_major
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="makId != null" >
+        mak_id,
+      </if>
+      <if test="majorKindId != null" >
+        major_kind_id,
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name,
+      </if>
+      <if test="majorId != null" >
+        major_id,
+      </if>
+      <if test="majorName != null" >
+        major_name,
+      </if>
+      <if test="testAmount != null" >
+        test_amount,
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="makId != null" >
+        #{makId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorKindId != null" >
+        #{majorKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorKindName != null" >
+        #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        #{majorId,jdbcType=CHAR},
+      </if>
+      <if test="majorName != null" >
+        #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="testAmount != null" >
+        #{testAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        #{updateDatetime,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hr.entity.ConfigMajor" >
+    update config_major
+    <set >
+      <if test="majorKindId != null" >
+        major_kind_id = #{majorKindId,jdbcType=SMALLINT},
+      </if>
+      <if test="majorKindName != null" >
+        major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      </if>
+      <if test="majorId != null" >
+        major_id = #{majorId,jdbcType=CHAR},
+      </if>
+      <if test="majorName != null" >
+        major_name = #{majorName,jdbcType=VARCHAR},
+      </if>
+      <if test="testAmount != null" >
+        test_amount = #{testAmount,jdbcType=SMALLINT},
+      </if>
+      <if test="updateDatetime != null" >
+        update_dateTime = #{updateDatetime,jdbcType=DATE},
+      </if>
+    </set>
+    where mak_id = #{makId,jdbcType=SMALLINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hr.entity.ConfigMajor" >
+    update config_major
+    set major_kind_id = #{majorKindId,jdbcType=SMALLINT},
+      major_kind_name = #{majorKindName,jdbcType=VARCHAR},
+      major_id = #{majorId,jdbcType=CHAR},
+      major_name = #{majorName,jdbcType=VARCHAR},
+      test_amount = #{testAmount,jdbcType=SMALLINT},
+      update_dateTime = #{updateDatetime,jdbcType=DATE}
+    where mak_id = #{makId,jdbcType=SMALLINT}
+  </update>
+</mapper>

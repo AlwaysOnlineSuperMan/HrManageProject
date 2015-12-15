@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="true" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>
+  <!--  
+ 	 模拟这样配置：
+    <package name="sysUser" namespace="/" extends="json-default">
+			<action name="sysUser" class="sysUser" >
+				<result name="doLogin" type="json"></result>
+				<result name="toLogin">/login.jsp</result>
+			</action>
+    </package>
+   -->
+	<package name="sysmajorcs" namespace="/" extends="struts-default">
+		<action name="sysmajorc" class="MajorChangeAction">
+			<result name="success">page/transfer/check_list.jsp</result>
+			<result name="success1">page/transfer/register_locate.jsp</result>
+			<result name="success2">page/transfer/register_list.jsp</result>
+			<result name="success3">page/transfer/locate.jsp</result>
+		</action>
+		<action name="mcById" class="MajorChangeAction">
+			<result name="mcById">page/transfer/check.jsp</result>
+			<result name="hmById">page/transfer/register.jsp</result>
+		</action>
+		<action name="myNingsi" class="MajorChangeAction">
+			<result name="selectIdName">page/transfer/check.jsp</result>
+		</action>
+		<action name="myTanglin" class="MajorChangeAction">
+			<result name="sumbit">page/transfer/check.jsp</result>
+		</action>	
+		
+	</package>
+
+</struts>
